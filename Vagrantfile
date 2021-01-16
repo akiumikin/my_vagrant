@@ -5,7 +5,6 @@ Vagrant.configure('2') do |config|
 
   config.vm.network :private_network, ip: '192.168.60.10'
   config.vm.network 'forwarded_port', guest: 3000, host: 3000 # frontComponent
-  config.vm.network 'forwarded_port', guest: 3010, host: 3010 # 
 
   config.vm.provider :virtualbox do |vb|
     vb.gui = false
