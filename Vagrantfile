@@ -6,6 +6,9 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: '192.168.60.10'
   config.vm.network 'forwarded_port', guest: 3000, host: 3000 # frontComponent
 
+  config.vm.network 'forwarded_port', guest: 3100, host: 3100 # api_server_rails
+  config.vm.network 'forwarded_port', guest: 3150, host: 3150 # api_server_postgres
+
   config.vm.provider :virtualbox do |vb|
     vb.gui = false
     vb.cpus = 2
@@ -25,6 +28,9 @@ Vagrant.configure('2') do |config|
 
     # vscodeのremote developmentで開発するためvagrant内でもgitを使えるようにする
     apt-get install git
+
+    # herokuの利用のためcliのインストール
+    curl https://cli-assets.heroku.com/install.sh | sh
 
     # time zoneを東京にする
     timedatectl set-timezone Asia/Tokyo
